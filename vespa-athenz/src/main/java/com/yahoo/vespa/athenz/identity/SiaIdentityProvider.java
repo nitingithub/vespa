@@ -7,7 +7,6 @@ import com.yahoo.log.LogLevel;
 import com.yahoo.vespa.athenz.api.AthenzService;
 import com.yahoo.vespa.athenz.tls.KeyStoreType;
 import com.yahoo.vespa.athenz.tls.SslContextBuilder;
-import com.yahoo.vespa.athenz.utils.AthenzIdentities;
 import com.yahoo.vespa.athenz.utils.SiaUtils;
 
 import javax.net.ssl.SSLContext;
@@ -91,6 +90,13 @@ public class SiaIdentityProvider extends AbstractComponent implements ServiceIde
     @Override
     public SSLContext getIdentitySslContext() {
         return sslContext.get();
+    }
+
+    @Override
+    public IdentitySslSocketFactory getIdentitySslSocketFactory() {
+        IdentitySslSocketFactory identitySslSocketFactory = new IdentitySslSocketFactory(getIdentitySslContext());
+        addIdentityListener(identitySslSocketFactory);
+        return identitySslSocketFactory;
     }
 
     @Override

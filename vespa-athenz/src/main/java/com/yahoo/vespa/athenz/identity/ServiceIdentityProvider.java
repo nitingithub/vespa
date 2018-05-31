@@ -15,6 +15,7 @@ import javax.net.ssl.SSLContext;
 public interface ServiceIdentityProvider {
     AthenzService identity();
     SSLContext getIdentitySslContext();
+    IdentitySslSocketFactory getIdentitySslSocketFactory();
     void addIdentityListener(Listener listener);
     void removeIdentityListener(Listener listener);
 

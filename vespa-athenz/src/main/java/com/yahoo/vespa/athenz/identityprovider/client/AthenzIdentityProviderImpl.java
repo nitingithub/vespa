@@ -10,6 +10,7 @@ import com.yahoo.jdisc.Metric;
 import com.yahoo.log.LogLevel;
 import com.yahoo.vespa.athenz.api.AthenzDomain;
 import com.yahoo.vespa.athenz.api.AthenzService;
+import com.yahoo.vespa.athenz.identity.IdentitySslSocketFactory;
 import com.yahoo.vespa.athenz.identity.ServiceIdentityProvider;
 import com.yahoo.vespa.athenz.identity.ServiceIdentityProviderListenerHelper;
 import com.yahoo.vespa.athenz.tls.KeyStoreType;
@@ -108,6 +109,13 @@ public final class AthenzIdentityProviderImpl extends AbstractComponent implemen
     @Override
     public SSLContext getIdentitySslContext() {
         return credentials.getIdentitySslContext();
+    }
+
+    @Override
+    public IdentitySslSocketFactory getIdentitySslSocketFactory() {
+        IdentitySslSocketFactory identitySslSocketFactory = new IdentitySslSocketFactory(getIdentitySslContext());
+        addIdentityListener(identitySslSocketFactory);
+        return identitySslSocketFactory;
     }
 
     @Override
