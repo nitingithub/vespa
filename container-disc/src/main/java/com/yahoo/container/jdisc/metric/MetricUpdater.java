@@ -90,12 +90,12 @@ public class MetricUpdater extends AbstractComponent {
         private final Runtime runtime = Runtime.getRuntime();
         private final Metric metric;
         private final ContainerWatchdogMetrics containerWatchdogMetrics;
-        private final JvmMetrics jvmMetrics;
+        private final GarbageCollectionMetrics garbageCollectionMetrics;
 
         public UpdaterTask(Metric metric, ContainerWatchdogMetrics containerWatchdogMetrics) {
             this.metric = metric;
             this.containerWatchdogMetrics = containerWatchdogMetrics;
-            this.jvmMetrics = new JvmMetrics(Clock.systemUTC());
+            this.garbageCollectionMetrics = new GarbageCollectionMetrics(Clock.systemUTC());
         }
 
         @SuppressWarnings("deprecation")
@@ -114,7 +114,7 @@ public class MetricUpdater extends AbstractComponent {
             metric.set(OPEN_FILE_DESCRIPTORS, count_open_files(), null);
 
             containerWatchdogMetrics.emitMetrics(metric);
-            jvmMetrics.emitMetrics(metric);
+            garbageCollectionMetrics.emitMetrics(metric);
         }
     }
 
