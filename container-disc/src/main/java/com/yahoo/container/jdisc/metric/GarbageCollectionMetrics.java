@@ -11,6 +11,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+/**
+ * @author ollivir
+ */
 public class GarbageCollectionMetrics {
     private static final String GC_PREFIX = "jdisc.gc.";
     private static final String GC_COUNT = GC_PREFIX + ".count";
@@ -43,7 +46,7 @@ public class GarbageCollectionMetrics {
 
     private void collectGcStatistics(long now) {
         for (GarbageCollectorMXBean gcBean : ManagementFactory.getGarbageCollectorMXBeans()) {
-            String gcName = gcBean.getName();
+            String gcName = gcBean.getName().replace(" ", "");
             GcStats stats = new GcStats(now, gcBean.getCollectionCount(), gcBean.getCollectionTime());
 
             LinkedList<GcStats> window = gcStatistics.computeIfAbsent(gcName, anyName -> new LinkedList<>());

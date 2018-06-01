@@ -18,6 +18,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * @author ollivir
+ */
 public class GarbageCollectionMetricsTest {
     @Test
     public void gc_metrics_reported_at_intervals() {
