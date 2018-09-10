@@ -41,8 +41,9 @@ public class StorageMaintainerTest {
             .region("us-east-1")
             .environment("prod")
             .system("main")
-            .pathResolver(new PathResolver())
             .cloud("mycloud")
+            .pathResolver(new PathResolver())
+            .dockerNetworkName("mynetwork")
             .coredumpFeedEndpoint("http://domain.tld/docid")
             .build();
     private final DockerOperations docker = mock(DockerOperations.class);

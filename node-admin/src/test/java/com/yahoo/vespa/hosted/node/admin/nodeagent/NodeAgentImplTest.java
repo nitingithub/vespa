@@ -88,9 +88,10 @@ public class NodeAgentImplTest {
             .environment("dev")
             .region("us-east-1")
             .system("main")
+            .cloud("mycloud")
             .parentHostHostname("parent.host.name.yahoo.com")
             .pathResolver(pathResolver)
-            .cloud("mycloud")
+            .dockerNetworkName("mynetwork")
             .build();
 
     private final NodeSpec.Builder nodeBuilder = new NodeSpec.Builder()

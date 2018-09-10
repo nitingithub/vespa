@@ -104,6 +104,7 @@ public class FilebeatConfigProviderTest {
                 .system(system)
                 .logstashNodes(logstashNodes)
                 .cloud("mycloud")
+                .dockerNetworkName("mynetwork")
                 .build();
     }
 

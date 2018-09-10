@@ -39,6 +39,7 @@ public class DockerOperationsImplTest {
             .environment("prod")
             .system("main")
             .cloud("mycloud")
+            .dockerNetworkName("mynetwork")
             .build();
     private final Docker docker = mock(Docker.class);
     private final ProcessExecuter processExecuter = mock(ProcessExecuter.class);

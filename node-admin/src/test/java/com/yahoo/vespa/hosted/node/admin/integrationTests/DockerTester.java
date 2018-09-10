@@ -69,8 +69,9 @@ public class DockerTester implements AutoCloseable {
                 .region("us-east-1")
                 .environment("prod")
                 .system("main")
-                .pathResolver(new PathResolver(PATH_TO_VESPA_HOME, Paths.get("/tmp"), Paths.get("/tmp")))
                 .cloud("mycloud")
+                .pathResolver(new PathResolver(PATH_TO_VESPA_HOME, Paths.get("/tmp"), Paths.get("/tmp")))
+                .dockerNetworkName("mynetwork")
                 .build();
 
         NodeSpec hostSpec = new NodeSpec.Builder()

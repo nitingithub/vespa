@@ -22,8 +22,9 @@ public class EnvironmentTest {
             .region("us-east-1")
             .environment("prod")
             .system("main")
-            .pathResolver(new PathResolver())
             .cloud("mycloud")
+            .pathResolver(new PathResolver())
+            .dockerNetworkName("mynetwork")
             .build();
 
     @Test
